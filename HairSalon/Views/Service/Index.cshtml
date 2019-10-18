@@ -1,11 +1,38 @@
+@using Salon.Models;
+@using System.Linq;
 @{
   Layout = "_Layout";
+  var sList = ViewBag.services as List<Service>;
 }
 
-<h1>Welcome</h1>
+<h1>Current Service Menu</h1>
 
-<a href="/stylist/new"><button type="button" class="btn btn-info">Add Stylist</button></a>
-<a href="/client/new" type="button" class="btn btn-info"><button>Add Client</button></a>
-<a href="/appointment/new"><button type="button" class="btn btn-info">Add Appointment</button></a>
-
-
+@if(sList.Any())
+{
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Apprentice</th>
+      <th scope="col">Stylist</th>
+      <th scope="col">Master Stylist</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach(Service s in sList)
+  {
+    <tr>
+      <th scope="row">@($"{s.Name}")</th>
+      <td>@($"{Math.round(s.Tier1Price, 2)}")</td>
+      <td>@($"{Math.round(s.Tier2Price, 2)}")</td>
+      <td>@($"{Math.round(s.Tier3Price, 2)}")</td>
+    </tr>
+  }
+  </table>
+}
+else
+{
+    <p>I'm sorry, there are currently no services. Please add a service to continue.</p>
+    <a href="/service/new" class="btn btn-info">Add Service</a> 
+}
