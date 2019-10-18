@@ -1,0 +1,41 @@
+@using Salon.Models;
+@using System.Linq;
+@{
+  Layout = "_Layout";
+  var cList = ViewBag.clients as List<Client>;
+  var sList = ViewBag.stylists as List<Stylist>;
+}
+
+<h1>Current Clients</h1>
+
+@if(cList.Any())
+{
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Stylist</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach(Client c in cList)
+  {
+    <tr class="clickable" onclick="window.location='@($"/stylist/{c.StylistID}/client/{c.ClientID}")'">
+      <th scope="row">@($"{c.ClientID}")</th>
+      <td>@($"{c.FirstName}")</td>
+      <td>@($"{c.LastName}")</td>
+      @{
+        int index = sList.FindIndex(stylist => stylist.StylistID == c.StylistID);
+      }
+      <td>@($"{sList[index].FirstName} {sList[index].LastName} | {sList[index].Title()}")</td>
+    </tr>
+  }
+  </table>
+}
+else
+{
+    <p>I'm sorry, there are currently no stylists. Please add a stylist to continue.</p>
+    <a href="/stylist/new" class="btn btn-info">Add Stylist</a> 
+}

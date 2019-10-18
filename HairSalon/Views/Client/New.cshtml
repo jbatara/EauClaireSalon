@@ -1,22 +1,20 @@
-@{
-  using Microsoft.AspNetCore.Mvc;
-  using Microsoft.AspNetCore.Mvc.Rendering;
-  using System.Collections.Generic;
-  using System.Linq;
-  using Salon.Models;
-  using Salon.Models;
-}
+@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@using System.Collections.Generic;
+@using System.Linq;
+@using Salon.Models;
+@using Salon.Models;
 @model Salon.Models.Client;
 
 @{
   Layout = "_Layout";
-  var dropDownList = ViewBag.dropDownList as List<SelectListItem>;
+  var ddList = ViewBag.dropDownList as List<SelectListItem>;
 }
 
 
 <h1>Add a Client</h1>
 
-@if(sList.Any())
+@if(ddList.Any())
 {
   @using (Html.BeginForm())
   {
@@ -28,11 +26,11 @@
 
       @Html.Label("StylistID", "Stylist: ")
 
-      @Html.DropDownFor(model => model.StylistID, drowDownList, "--Select Stylist--")
+      @Html.DropDownListFor(model => model.StylistID, ddList, "--Select Stylist--")
   
       
       <a href="/stylist" class="btn btn-info">Cancel</a>
-      <button type="submit" value="Add Review" class="btn btn-info">Save Stylist</button>
+      <button type="submit" value="Add Review" class="btn btn-info">Save Client</button>
   }
 }
 else
