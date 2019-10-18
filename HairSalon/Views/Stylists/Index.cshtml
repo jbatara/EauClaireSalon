@@ -7,27 +7,27 @@
 
 <h1>Current Stylists</h1>
 
-@if(!ViewBag.stylists.Any())
+@if(ViewBag.stylists.Any())
 {
-  foreach(Stylist s in sList)
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Title</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach(Stylist s in sList)
   {
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src='@($"{s.ImgURL()}")' class="card-img" alt='@($"{s.FirstName} {s.LastName}'s portrait")'>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <input type="hidden" name="stylistID" value='@($"{s.StylistID}")'>
-              <h5 class="card-title">@($"{s.FirstName} {s.LastName}")</h5>
-              <p class="card-text">@($"{s.Title()")</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    }
-  
+    <tr class="clickable" onclick="window.location="@($"/stylist/{s.StylistID}")">
+      <th scope="row">@($"{s.StylistID}")</th>
+      <td>@($"{s.FirstName}")</td>
+      <td>@($"{s.LastName}")</td>
+      <td>@($"{s.Title()}")</td>
+    </tr>
+  }
 }
 else
 {
