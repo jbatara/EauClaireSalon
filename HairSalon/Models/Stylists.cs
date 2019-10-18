@@ -25,7 +25,8 @@ namespace Salon.Models
 
         public string ImgURL()
         {
-            return $"/img/stylist/{FirstName}_{LastName}.jpg";
+            // return $"/img/stylist/{FirstName}_{LastName}.jpg";
+            return "/img/stylist/genericstylist.png";
         }
         
     }
