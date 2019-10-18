@@ -1,0 +1,25 @@
+@using Salon.Models;
+@using System.Linq;
+@{
+  Layout = "_Layout";
+  var sList = ViewBag.stylists as List<Stylist>;
+}
+
+<h1>Current Stylists</h1>
+
+@if(ViewBag.stylists.Any())
+{
+  <p>I'm sorry, there are currently no stylists. Please add a stylist to continue.</p>
+  <a href="/stylist/new" class="btn btn-info">Add Stylist</a>
+}
+else
+{
+  foreach(Stylist s in sList)
+  {
+    <div>
+      <h2>s.Name</h2>
+      <h3>@(s.Title())</h3>
+      <input type="hidden" name="stylistID" value='@($"{s.StylistID}")'>
+    </div>
+  }
+}
