@@ -4,7 +4,8 @@ namespace Salon.Models
     {
         public int StylistID { get; set; }
         public int StylistTier {get;set;}
-        public string Name {get;set;}
+        public string FirstName {get;set;}
+        public string LastName { get; set; }
 
         public string Title()
         {
@@ -20,6 +21,11 @@ namespace Salon.Models
             {
                 return "Apprentice";
             }
+        }
+
+        public string ImgURL()
+        {
+            return $"/img/stylist/{FirstName}_{LastName}.jpg";
         }
         
     }
