@@ -3,11 +3,11 @@ using Salon.Models;
 
 namespace Salon.Controllers
 {
-  public class HomeController : Controller
+  public class ServiceController : Controller
   {
     private readonly SalonContext _db;
 
-    public HomeController(SalonContext db)
+    public ServiceController(SalonContext db)
     {
       _db = db;
     }
