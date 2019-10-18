@@ -12,7 +12,7 @@ namespace Salon.Controllers
       _db = db;
     }
 
-    [HttpGet("/")]
+
     public ActionResult Index()
     {
 
