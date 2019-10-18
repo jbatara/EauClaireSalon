@@ -1,0 +1,43 @@
+@{
+  using Microsoft.AspNetCore.Mvc;
+  using Microsoft.AspNetCore.Mvc.Rendering;
+  using System.Collections.Generic;
+  using System.Linq;
+  using Salon.Models;
+  using Salon.Models;
+}
+@model Salon.Models.Client;
+
+@{
+  Layout = "_Layout";
+  var dropDownList = ViewBag.dropDownList as List<SelectListItem>;
+}
+
+
+<h1>Add a Client</h1>
+
+@if(sList.Any())
+{
+  @using (Html.BeginForm())
+  {
+      @Html.Label("FirstName", "First Name: ")
+      @Html.TextBoxFor(model => model.FirstName)
+
+      @Html.Label("LastName", "Last Name: ")
+      @Html.TextBoxFor(model => model.LastName)
+
+      @Html.Label("StylistID", "Stylist: ")
+
+      @Html.DropDownFor(model => model.StylistID, drowDownList, "--Select Stylist--")
+  
+      
+      <a href="/stylist" class="btn btn-info">Cancel</a>
+      <button type="submit" value="Add Review" class="btn btn-info">Save Stylist</button>
+  }
+}
+else
+{
+  <p>I'm sorry, there are currently no stylists. Please add a stylist before adding a client.</p>
+  <a href="/stylist/new" class="btn btn-info">Add Stylist</a> 
+}
+
