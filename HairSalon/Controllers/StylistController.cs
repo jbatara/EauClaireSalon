@@ -16,10 +16,10 @@ namespace Salon.Controllers
       _db = db;
     }
 
-    [HttpGet("/")]
+    [HttpGet("/stylist")]
     public ActionResult Index()
     {
-
+      ViewBag.stylists = _db.Stylists.ToList();
       return View();
     }
 
@@ -30,8 +30,17 @@ namespace Salon.Controllers
         return View();
     }
 
+    [HttpGet("/stylist/new")]
     public ActionResult New()
     {
+      List<SelectListItem> ddList = new List<SelectListItem>();
+      SelectListItem Tier1 = new SelectListItem(){ Text = "Apprentice", Value = "1"};
+      SelectListItem Tier2 = new SelectListItem() { Text = "Stylist", Value = "2" };
+      SelectListItem Tier3 = new SelectListItem() { Text = "Master Stylist", Value = "3" };
+      ddList.Add(Tier1);
+      ddList.Add(Tier2);
+      ddList.Add(Tier3);
+      ViewBag.dropDownList = ddList;
       return View();
     }
 
@@ -40,7 +49,7 @@ namespace Salon.Controllers
       _db.Stylists.Add(stylist);
       _db.SaveChanges();
       int stylistID = stylist.StylistID;
-      return RedirectToAction("Stylist", stylistID);
+      return Redirect($"/stylist{stylistID}");
     }
   }
 }
