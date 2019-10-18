@@ -7,7 +7,7 @@
 
 <h1>Current Stylists</h1>
 
-@if(ViewBag.stylists.Any())
+@if(sList.Any())
 {
   <table class="table table-hover">
   <thead>
@@ -21,13 +21,14 @@
   <tbody>
   @foreach(Stylist s in sList)
   {
-    <tr class="clickable" onclick="window.location="@($"/stylist/{s.StylistID}")">
+    <tr class="clickable" onclick="window.location='@($"/stylist/{s.StylistID}")'">
       <th scope="row">@($"{s.StylistID}")</th>
       <td>@($"{s.FirstName}")</td>
       <td>@($"{s.LastName}")</td>
       <td>@($"{s.Title()}")</td>
     </tr>
   }
+  </table>
 }
 else
 {

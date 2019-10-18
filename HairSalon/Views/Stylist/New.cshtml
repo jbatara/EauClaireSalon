@@ -1,0 +1,23 @@
+@model Salon.Models.Stylist;
+@using Salon.Models;
+
+@{
+    Layout="_Layout";
+    var ddList = ViewBag.dropDownList as List<SelectListItem>;
+}
+
+<h1>Add a Stylist</h1>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.FirstName, "First Name  ")
+    @Html.TextBoxFor(model => model.FirstName)<br>
+
+    @Html.LabelFor(model => model.LastName, "Last Name  ")
+    @Html.TextBoxFor(model => model.LastName)<br>
+
+    @Html.LabelFor(model => model.StylistTier, "Stylist Level  ")
+    @Html.DropDownListFor(model => model.StylistTier, ddList, "--Select Level--")<br>
+  
+    <a href="/stylist" class="btn btn-info">Cancel</a>
+    <button type="submit" value="Add Review" class="btn btn-info">Save Stylist</button>
+}
