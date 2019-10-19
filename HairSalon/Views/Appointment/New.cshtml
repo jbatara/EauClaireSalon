@@ -1,0 +1,30 @@
+@model Salon.Models.Appointment;
+@using Salon.Models;
+
+@{
+    Layout="_Layout";
+    var stylistList = ViewBag.ddStylists as List<SelectListItem>;
+    var clientList = ViewBag.ddClients as List<SelectListItem>;
+    var serviceList = ViewBag.ddServices as List<SelectListItem>;
+}
+
+<h1>Add a Stylist</h1>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Paid, new {Value="False"})
+
+    @Html.LabelFor(model => model.ApptDateTime, "Date and Time ")
+    @Html.TextBoxFor(model => model.ApptDateTime, new {type = "datetime-local" })<br>
+
+    @Html.LabelFor(model => model.ServiceID, "Service  ")
+    @Html.DropDownListFor(model => model.ServiceID, serviceList, "--Select Service--")<br>
+
+    @Html.LabelFor(model => model.ClientID, "Client ")
+    @Html.DropDownListFor(model => model.ClientID, clientList, "--Select Client--")<br>
+
+    @Html.LabelFor(model => model.StylistID, "Stylist ")
+    @Html.DropDownListFor(model => model.StylistID, stylistList, "--Select Stylist--")<br>
+  
+    <a href="/services" class="btn btn-info">Cancel</a>
+    <button type="submit" value="Add Review" class="btn btn-info">Save Service</button>
+}
