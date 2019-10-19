@@ -27,12 +27,7 @@ namespace Salon.Controllers
     public ActionResult New()
     {
       List<Stylist> sList = _db.Stylists.OrderBy(s => s.LastName).ToList();
-      List<SelectListItem> dropDownList = new List<SelectListItem>();
-      foreach (Stylist s in sList)
-      {
-        SelectListItem item = new SelectListItem() { Text = $"{s.FirstName} {s.LastName}", Value = $"{ s.StylistID }" };
-        dropDownList.Add(item);
-      }
+      List<SelectListItem> dropDownList = Stylist.ListToDropDownItems(sList);
       ViewBag.dropDownList = dropDownList;
       return View();
     }
