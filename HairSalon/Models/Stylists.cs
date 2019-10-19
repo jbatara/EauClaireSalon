@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Salon.Models
 {
     public class Stylist
@@ -27,6 +29,22 @@ namespace Salon.Models
         {
             // return $"/img/stylist/{FirstName}_{LastName}.jpg";
             return "/img/stylist/genericstylist.png";
+        }
+
+        public SelectListItem ToDropDownItem()
+        {
+        SelectListItem item = new SelectListItem { Text = $"{FirstName} {LastName}", Value = $"{ StylistID }" };
+        return item;
+        }
+
+        public static List<SelectListItem> ListToDropDownItems(List<Stylist> stylists)
+        {
+        List<SelectListItem> list = new List<SelectListItem>();
+        foreach (Stylist s in stylists)
+        {
+            list.Add(s.ToDropDownItem());
+        }
+        return list;
         }
         
     }
