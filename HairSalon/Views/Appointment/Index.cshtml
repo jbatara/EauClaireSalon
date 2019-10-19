@@ -1,2 +1,51 @@
 
 
+@using Salon.Models;
+@using System.Linq;
+@{
+  Layout = "_Layout";
+  var aList = ViewBag.appointments as List<Appointment>;
+  var cList = ViewBag.clients as List<Client>;
+  var sList = ViewBag.stylists as List<Stylist>;
+  var svList = ViewBag.services as List<Service>;
+}
+
+<h1>Current Appointments</h1>
+
+@if(aList.Any())
+{
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID#</th>
+      <th scope="col">Client</th>
+      <th scope="col">Stylist</th>
+      <th scope="col">Service</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach(Appointment a in aList)
+  {
+    <tr>
+      <th scope="row">@($"{a.AppointmentID}")</th>
+      @{
+        int clientIndex = cList.FindIndex(client => client.ClientID == a.ClientID);
+      }
+      <td>@($"{cList[clientIndex].FirstName} {cList[clientIndex].LastName}")</td>
+      @{
+        int stylistIndex = sList.FindIndex(stylist => stylist.StylistID == a.StylistID);
+      }
+      <td>@($"{sList[stylistIndex].FirstName} {sList[stylistIndex].LastName} | {sList[stylistIndex].Title()}")</td>
+      @{
+        int serviceIndex = svList.FindIndex(service => service.ServiceID == a.ServiceID);
+      }
+      <td>@($"{svList[serviceIndex].Name}")</td>
+    </tr>
+  }
+  </table>
+}
+else
+{
+    <p>I'm sorry, there are currently no appointments. Please add an appointment to continue.</p>
+    <a href="/appointment/new" class="btn btn-info">Add Appointment</a> 
+}
