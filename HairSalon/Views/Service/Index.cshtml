@@ -23,10 +23,11 @@
   @foreach(Service s in sList)
   {
     <tr>
-      <th scope="row">@($"{s.Name}")</th>
-      <td>@($"{Math.round(s.Tier1Price, 2)}")</td>
-      <td>@($"{Math.round(s.Tier2Price, 2)}")</td>
-      <td>@($"{Math.round(s.Tier3Price, 2)}")</td>
+      <th scope="row">@($"{s.ServiceID}")</th>
+      <td>@($"{s.Name}")</td>
+      <td>@($"{Math.Round(s.Tier2Price, 2)}")</td>
+      <td>@($"{Math.Round(s.Tier1Price, 2)}")</td>
+      <td>@($"{Math.Round(s.Tier3Price, 2)}")</td>
     </tr>
   }
   </table>
