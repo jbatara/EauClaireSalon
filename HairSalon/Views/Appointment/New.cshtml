@@ -8,23 +8,46 @@
     var serviceList = ViewBag.ddServices as List<SelectListItem>;
 }
 
-<h1>Add a Stylist</h1>
-@using (Html.BeginForm())
+<h1>Book an Appointment</h1>
+@if(stylistList.Any() && clientList.Any() && serviceList.Any())
 {
-    @Html.HiddenFor(model => model.Paid, new {Value="False"})
+  @using (Html.BeginForm())
+  {
+      @Html.HiddenFor(model => model.Paid, new {Value="False"})
 
-    @Html.LabelFor(model => model.ApptDateTime, "Date and Time ")
-    @Html.TextBoxFor(model => model.ApptDateTime, new {type = "datetime-local" })<br>
+      @Html.LabelFor(model => model.ApptDateTime, "Date and Time ")
+      @Html.TextBoxFor(model => model.ApptDateTime, new {type = "datetime-local" })<br>
 
-    @Html.LabelFor(model => model.ServiceID, "Service  ")
-    @Html.DropDownListFor(model => model.ServiceID, serviceList, "--Select Service--")<br>
+      @Html.LabelFor(model => model.ServiceID, "Service  ")
+      @Html.DropDownListFor(model => model.ServiceID, serviceList, "--Select Service--")<br>
 
-    @Html.LabelFor(model => model.ClientID, "Client ")
-    @Html.DropDownListFor(model => model.ClientID, clientList, "--Select Client--")<br>
+      @Html.LabelFor(model => model.ClientID, "Client ")
+      @Html.DropDownListFor(model => model.ClientID, clientList, "--Select Client--")<br>
 
-    @Html.LabelFor(model => model.StylistID, "Stylist ")
-    @Html.DropDownListFor(model => model.StylistID, stylistList, "--Select Stylist--")<br>
-  
-    <a href="/services" class="btn btn-info">Cancel</a>
-    <button type="submit" value="Add Review" class="btn btn-info">Save Service</button>
+      @Html.LabelFor(model => model.StylistID, "Stylist ")
+      @Html.DropDownListFor(model => model.StylistID, stylistList, "--Select Stylist--")<br>
+    
+      <a href="/services" class="btn btn-info">Cancel</a>
+      <button type="submit" value="Add Review" class="btn btn-info">Save Service</button>
+  }
+}
+else if(!stylistList.Any())
+{
+  <p>I'm sorry, there are currently no stylists. Please add a stylist to continue.</p>
+  <a href="/stylist/new" class="btn btn-info">Add Stylist</a> 
+}
+else if (!clientList.Any())
+{
+  <p>I'm sorry, there are currently no clients. Please add a client to continue.</p>
+  <a href="/client/new" class="btn btn-info">Add Client</a> 
+}
+else if (!serviceList.Any())
+{
+  <p>I'm sorry, there are currently no services. Please add a service to continue.</p>
+  <a href="/service/new" class="btn btn-info">Add Service</a> 
+}
+else
+{
+  <p>Uh-oh. Looks like we can't do that.</p>
+  <a href="/" class="btn btn-info">Home</a> 
 }
