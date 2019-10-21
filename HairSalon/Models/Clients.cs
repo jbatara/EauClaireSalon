@@ -9,6 +9,8 @@ namespace Salon.Models
         public string LastName { get; set; }
         public int StylistID {get;set;}
 
+        public Stylist Stylist {get;set;}
+
 
         public SelectListItem ToDropDownItem()
         {
