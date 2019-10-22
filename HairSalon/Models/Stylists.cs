@@ -4,10 +4,6 @@ namespace Salon.Models
 {
     public class Stylist
     {
-        public Stylist()
-        {
-            this.Clients = new HashSet<Client>();
-        }
         public int StylistID { get; set; }
         public int StylistTier {get;set;}
         public string FirstName {get;set;}

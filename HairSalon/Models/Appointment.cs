@@ -10,7 +10,7 @@ namespace Salon.Models
         public bool Paid {get;set;}
         public int ClientID {get;set;}
         public int StylistID { get; set; }
-        public virtual ICollection<AppointmentService> Services {get;set;}
+        public virtual ICollection<AppointmentService> AppointmentServices {get;set;}
 
     }
 }

@@ -7,9 +7,8 @@ namespace Salon.Models
         public int ClientID {get;set;}
         public string FirstName {get;set;}
         public string LastName { get; set; }
-        public int StylistID {get;set;}
 
-        public Stylist Stylist {get;set;}
+        public ICollection<Appointment> Appointments {get;set;}
 
 
         public SelectListItem ToDropDownItem()
