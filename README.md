@@ -36,7 +36,7 @@ $git clone repo_url
 with repo_url being the url that was just copied. To open the console app, navigate to the local directory which the online repository was cloned to using the command
 
 ```
-$cd SweetNSavory/SweetNSavory
+$cd EauClaireSalon/HairSalon
 ```
 
 ### Setting up a MySql 
